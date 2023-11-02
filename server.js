@@ -1,15 +1,22 @@
 import express from "express";
-import { DB_CONNECTION } from "./DB.js";
+import { DB_CONNECTION } from "./db.js";
+import dotenv from "dotenv";
+import user_routes from "./routes/user.js";
+import cors from  'cors'
 
 const app = express();
-const port = 3000;
+const port = 6000;
+
+dotenv.config();
+
+app.use(cors())
+app.use(express.json())
 
 // Connect to MongoDB
-// DB_CONNECTION();
+DB_CONNECTION();
 
-app.get("/", async (req, res) => {
-  res.json("Server is working");
-});
+// initilized routes
+app.use("/users", user_routes);
 
 // Start the server
 app.listen(port, () => {
