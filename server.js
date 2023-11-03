@@ -5,7 +5,6 @@ import user_routes from "./routes/user.js";
 import cors from  'cors'
 
 const app = express();
-const port = 3000;
 
 dotenv.config();
 
@@ -15,11 +14,7 @@ app.use(express.json())
 // Connect to MongoDB
 DB_CONNECTION();
 
-console.log('server')
 // initilized routes
 app.use("/users", user_routes);
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+export default app
